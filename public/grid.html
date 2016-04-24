@@ -43,47 +43,47 @@
     </style>
     <link href="bootstrap-responsive.css" rel="stylesheet">
  <script>
- 
+
  function gridGenerate(){
-   alert('gg');
-   var str="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-   var grid = "";
-   content="";   
-   divRef =document.getElementById("gridRef");   
-   tableRef = document.createElement('table');
-   tableRef.style.border = "1px solid #200";
-   tableRef.style.width = "225px";
-   tableRef.setAttribute("class","table");
-   //tableRef.setAttribute("width","200");
-   
-   counter = 0;
-   for (row = 0 ; row < 6 ; row++){    
-     trRef =  document.createElement('tr'); 
-     trRef.style.border = "1px solid #200";
-     for (col = 0 ; col < 6 ; col++){
-       r = Math.round(Math.random() * 10000000);
-       r = r % (36-counter) ;
-       randomChar = str.charAt(r);
-       //alert(randomChar);
-       grid = grid +randomChar;
-       index = str.indexOf(randomChar);      
-       str = str.substring(0,index) + str.substring(index+1, 36-counter);
-      // alert(str);
-       textNode = document.createTextNode(randomChar);
-       td =  document.createElement('td');
-       td.style.border = "1px solid #200";
-       td.appendChild(textNode);       
-       trRef.appendChild(td);
-       counter++;
+     alert('gg');
+     var str="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+     var grid = "";
+     content="";
+     divRef =document.getElementById("gridRef");
+     tableRef = document.createElement('table');
+     tableRef.style.border = "1px solid #200";
+     tableRef.style.width = "225px";
+     tableRef.setAttribute("class","table");
+     //tableRef.setAttribute("width","200");
+
+     counter = 0;
+     for (row = 0 ; row < 6 ; row++){
+         trRef =  document.createElement('tr');
+         trRef.style.border = "1px solid #200";
+         for (col = 0 ; col < 6 ; col++){
+             r = Math.round(Math.random() * 10000000);
+             r = r % (36-counter) ;
+             randomChar = str.charAt(r);
+             //alert(randomChar);
+             grid = grid +randomChar;
+             index = str.indexOf(randomChar);
+             str = str.substring(0,index) + str.substring(index+1, 36-counter);
+            // alert(str);
+             textNode = document.createTextNode(randomChar);
+             td =  document.createElement('td');
+             td.style.border = "1px solid #200";
+             td.appendChild(textNode);
+             trRef.appendChild(td);
+             counter++;
+         }
+         tableRef.appendChild(trRef);
+
      }
-     tableRef.appendChild(trRef);
-     
-   }
-   divRef.appendChild(tableRef);
-   document.getElementById("pswdGrid").value=grid;
-   //alert(document.getElementById("pswd").value);
+     divRef.appendChild(tableRef);
+     document.getElementById("pswdGrid").value=grid;
+     //alert(document.getElementById("pswd").value);
  }
- 
+
 </script>
 </head>
 <body onload="gridGenerate()" >

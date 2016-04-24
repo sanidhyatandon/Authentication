@@ -60,14 +60,27 @@
   <body>
 
     <div class="container">
-	<div align="center"><h4>User Registration For Numeric Metrix Authentication Scheme</h4></div>
-
-      <form class="form-signin" action="/registerProcess" method="POST">
+    <div align="center"><h4>User Registration For Color Scheme Authentication</h4></div>
+      <form class="form-signin" action="registerColorProcess.jsp" method="POST">
         <h2 class="form-signin-heading">Register user</h2>
         <input name="fname" type="text" class="input-block-level" placeholder="First Name">
         <input name="lname" type="text" class="input-block-level" placeholder="Last Name">
         <input name="email" type="text" class="input-block-level" placeholder="Email address">
-        <input name="password" type="password" class="input-block-level" placeholder="Secret Password (Set of even characters)">
+        <h4>Choose color Ratings</h4>
+        <table style="border:1px solid #200;width:225px;" class="table">
+        <tr style="padding:0px;border:1px solid #200">
+            <td style="border:1px solid #230;background-color:#FF0000">Red</td>
+            <td style="border:1px solid #230;background-color:#FF1493">Pink</td>
+            <td style="border:1px solid #230;background-color:#FF8C00">Orange</td>
+            <td style="border:1px solid #230;background-color:#FFFF00">Yellow</td>
+        </tr>
+        <tr style="padding:0px;border:1px solid #200">
+            <td style="border:1px solid #230;background-color:#FFFFFF"><input name="red" type="text" class="input-block-level" placeholder="0"></td>
+            <td style="border:1px solid #230;background-color:#FFFFFF"><input name="pink" type="text" class="input-block-level" placeholder="0"></td>
+            <td style="border:1px solid #230;background-color:#FFFFFF"><input name="orange" type="text" class="input-block-level" placeholder="0"></td>
+            <td style="border:1px solid #230;background-color:#FFFFFF"><input name="yellow" type="text" class="input-block-level" placeholder="0"></td>
+        </tr>
+        </table>
         <button class="btn btn-large btn-primary" type="submit">Register</button>
       </form>
 
