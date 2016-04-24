@@ -14,7 +14,7 @@ server.route({
 	method: '*',
 	path: '/login',
 	handler: (request, reply) => {
-		reply.file(Path.join(__dirname, 'public', 'register.html'))
+		reply.file(Path.join(__dirname, '..', 'public', 'register.html'))
 	}
 })
 
@@ -22,7 +22,7 @@ server.route({
 	method: '*',
 	path: '/registerProcess',
 	handler: (request, reply) => {
-		reply.file(Path.join(__dirname, 'public', 'registerProcess.html'))
+		reply.file(Path.join(__dirname,  '..', 'public', 'registerProcess.html'))
 	}
 })
 
@@ -31,7 +31,7 @@ server.route({
 	path: '/{p*}',
 	handler: {
 		directory: {
-			path: Path.join(__dirname, 'public')
+			path: Path.join(__dirname,  '..', 'public')
 		}
 	}
 })
