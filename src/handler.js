@@ -52,4 +52,7 @@ module.exports  = {
             .then(reply.file(staticFile('index.html')))
             .catch(console.log)
     },
+    loginAlpha(request, reply) {
+
+    },
 }
