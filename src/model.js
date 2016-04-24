@@ -7,9 +7,9 @@
 const db = require('../config/db')
 
 exports.UserEntity = class UserEntity extends db.Model {
-  get tableName() {
-    return 'users';
-  }
+    get tableName() {
+       return 'users';
+    }
 }
 
 exports.User = class User {
