@@ -9,8 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bookshelf": "^0.9.4",
     "hapi": "^13.3.0",
-    "inert": "^3.2.0"
+    "inert": "^3.2.0",
+    "knex": "^0.10.0",
+    "mysql": "^2.10.2"
   },
   "devDependencies": {
     "nodemon": "^1.9.1"
