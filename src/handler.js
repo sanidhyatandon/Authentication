@@ -49,7 +49,7 @@ module.exports  = {
         new UserEntity(deleteNullKeys(user))
             .save()
             .then(user => user.toJSON())
-            .then(user => console.log(`Saved ${user}`))
+            .then(reply.file(staticFile('index.html')))
             .catch(console.log)
     },
 }
