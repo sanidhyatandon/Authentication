@@ -5,8 +5,17 @@
 const Path = require('path')
 
 const staticFile = fileName => Path.join(__dirname, '..', 'public', fileName)
+const deleteNullKeys = object => {
+  Object.keys(object).forEach(key => {
+    if (object[key] === null || object[key] === undefined) {
+      delete object[key];
+    }
+  });
+  return object;
+};
 
-const User = require('./model').User
+const User          = require('./model').User
+const UserEntity    = require('./model').UserEntity
 
 module.exports  = {
     login(request, reply) {
@@ -37,6 +46,10 @@ module.exports  = {
             password:  request.payload.password,
             scheme:    'number',
         })
-        console.log(user)
+        new UserEntity(deleteNullKeys(user))
+            .save()
+            .then(user => user.toJSON())
+            .then(user => console.log(`Saved ${user}`))
+            .catch(console.log)
     },
 }
