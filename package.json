@@ -10,12 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "bookshelf": "^0.9.4",
+    "handlebars": "^4.0.5",
     "hapi": "^13.3.0",
     "inert": "^3.2.0",
     "knex": "^0.10.0",
     "mysql": "^2.10.2",
     "nodemailer": "^2.3.2",
-    "nodemailer-mailgun-transport": "^1.0.1"
+    "nodemailer-mailgun-transport": "^1.0.1",
+    "vision": "^4.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.9.1"
