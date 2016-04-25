@@ -21,6 +21,16 @@ module.exports = [
         handler: handler.loginAlpha
     },
     {
+        method: 'POST',
+        path: '/loginColor',
+        handler: handler.loginColor
+    },
+    {
+        method: 'POST',
+        path: '/getDirs',
+        handler: handler.getDirs
+    },
+    {
         method: 'GET',
         path: '/{p*}',
         handler: handler.static

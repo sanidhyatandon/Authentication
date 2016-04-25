@@ -4,6 +4,7 @@
 
 'use strict'
 
+const fs   = require('fs')
 const Path = require('path')
 
 const staticFile = fileName => Path.join(__dirname, '..', 'public', fileName)
@@ -94,4 +95,31 @@ module.exports  = {
             })
             .catch( err => console.log(`Error`, err) )
     },
+    loginColor(request, reply) {
+
+    },
+    getDirs(request, reply) {
+        const dir = request.payload.dir;
+        let r = '<ul class="jqueryFileTree" style="display: none;">';
+        try {
+            r = '<ul class="jqueryFileTree" style="display: none;">';
+            const files = fs.readdirSync(dir);
+            files.forEach(function(f){
+                const ff = Path.join(dir, f);
+                const stats = fs.statSync(ff)
+                if (stats.isDirectory()) {
+                    r += '<li class="directory collapsed"><a href="#" rel="' + ff  + '/">' + f + '</a></li>';
+                } else {
+                    const e = f.split('.')[1];
+                    r += '<li class="file ext_' + e + '"><a href="#" rel='+ ff + '>' + f + '</a></li>';
+                }
+            });
+            r += '</ul>';
+        } catch(e) {
+            console.log(e)
+            r += 'Could not load directory: ' + dir;
+            r += '</ul>';
+        }
+        reply(r)
+    }
 }
