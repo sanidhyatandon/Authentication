@@ -32,6 +32,11 @@ module.exports = [
     },
     {
         method: 'GET',
+        path: '/listUsers',
+        handler: handler.listUsers
+    },
+    {
+        method: 'GET',
         path: '/{p*}',
         handler: handler.static
     },

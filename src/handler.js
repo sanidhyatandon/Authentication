@@ -85,7 +85,7 @@ module.exports  = {
                 console.log(derivedPswd, pswdFromUI)
                 if (derivedPswd === pswdFromUI) {
                     if (user.userType === 'ADMIN') {
-                        reply.file(staticFile('listUsers.html'))
+                        reply.redirect('/listUsers')
                     } else {
                         reply.file(staticFile('explorer.html'))
                     }
@@ -121,5 +121,11 @@ module.exports  = {
             r += '</ul>';
         }
         reply(r)
-    }
+    },
+    listUsers(request, reply) {
+        UserEntity.collection()
+            .fetch()
+            .then(data => data.toJSON())
+            .then(users => reply.view('listUsers', { userId: 12, users: users }))
+    },
 }
