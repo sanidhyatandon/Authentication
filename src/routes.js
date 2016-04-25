@@ -19,7 +19,7 @@ module.exports = [
         method: 'POST',
         path: '/loginAlpha',
         handler: handler.loginAlpha
-    }
+    },
     {
         method: 'GET',
         path: '/{p*}',
