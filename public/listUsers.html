@@ -65,13 +65,15 @@
     <div align="right"><h4><a href='/'>Logout</a></h4></div>
     <div align="center">
       <table class="table">
-         <tr>
-            <td><%=user.id %></td>
-            <td><%=user.fname %><%=user.lname %></td>
-            <td><%=user.email %></td>
-            <td><%=user.status %></td>
-            <td><a href='/activateUser?userid={{userid}}'>Activate</a></td>
-         </tr>
+        {{#each users}}
+          <tr>
+             <td>{{this.id}}</td>
+             <td>{{this.firstName}} {{this.lastName}}</td>
+             <td>{{this.email}}</td>
+             <td>{{this.status}}</td>
+             <td><a href='/activate?id={{this.id}}'>Activate</a></td>
+          </tr>
+        {{/each}}
       </table>
 
       </div>
