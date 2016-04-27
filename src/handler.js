@@ -116,4 +116,10 @@ module.exports  = {
             .then(data => data.toJSON())
             .then(users => reply.view('listUsers', { userId: 12, users: users }))
     },
+    activate(request, reply) {
+        const id = request.query.id
+        new UserEntity({ id: id })
+            .save({status: 'ACTIVATED'}, {patch: true})
+            .then(() => reply.redirect('/listUsers'))
+    }
 }

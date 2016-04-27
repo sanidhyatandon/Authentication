@@ -37,6 +37,11 @@ module.exports = [
     },
     {
         method: 'GET',
+        path: '/activate',
+        handler: handler.activate
+    },
+    {
+        method: 'GET',
         path: '/{p*}',
         handler: handler.static
     },
