@@ -5,48 +5,21 @@
 'use strict'
 
 const mailer = require('../config/mail')
+const _      = require('lodash')
 
 exports.mails = {
 
 }
 
-/**
- * Methods from processAuth
- */
+exports.GridPassword = (gridStr, password) => {
+    const grid      = _.chunk(gridStr, 6)
+    const passPairs = _.chunk(password.toUpperCase(), 2)
 
-class ColRow{
-    constructor(col, row) {
-        this.col = col
-        this.row = row
-    }
-
-    getCol() { return this.col }
-
-    setCol(col) { this.col = col }
-
-    getRow() { return this.row }
-
-    setRow(row) { this.row = row }
-}
-
-exports.Util = class Util {
-    getPswdCharIndexForPair(firstCharOfPair, secondCharOfPair) {
-        console.log(firstCharOfPair, secondCharOfPair)
-        let index = 0
-        if(firstCharOfPair.getRow() === secondCharOfPair.getRow()) {
-            index = (firstCharOfPair.getRow() * 6) + firstCharOfPair.getCol()
-        } else if(firstCharOfPair.getCol() === secondCharOfPair.getCol()) {
-            index = (firstCharOfPair.getRow() * 6) + firstCharOfPair.getCol()
-        } else {
-            index = (secondCharOfPair.getRow() * 6) + firstCharOfPair.getCol()
-        }
-        return index
-    }
-
-    getPosOfPswdChar(charOfPswd, gridStr) {
-        const index = gridStr.indexOf(charOfPswd)
-        const row = index / 6
-        const col = index % 6
-        return new ColRow(col, row)
-    }
+    const z = passPairs.reduce((pass, pair) => {
+        const col = parseInt(gridStr.indexOf(pair[0]) % 6, 0)
+        const row = parseInt(gridStr.indexOf(pair[1]) / 6, 0)
+        return pass + grid[row][col]
+    }, '')
+    console.log(z)
+    return z
 }
