@@ -58,6 +58,23 @@ module.exports  = {
             .then(reply.file(staticFile('index.html')))
             .catch(console.log)
     },
+    registerColor(request, reply) {
+        const user = new User({
+            firstName: request.payload.fname,
+            lastName:  request.payload.lname,
+            email:     request.payload.email,
+            red:       request.payload.red,
+            pink:      request.payload.pink,
+            orange:    request.payload.orange,
+            yellow:    request.payload.yellow,
+            scheme:    'color',
+        })
+        new UserEntity(deleteNullKeys(user))
+            .save()
+            .then(user => user.toJSON())
+            .then(reply.file(staticFile('index.html')))
+            .catch(console.log)
+    },
     loginAlpha(request, reply) {
         const email      = request.payload.email
         const gridStr    = request.payload.pswdGridN
@@ -68,9 +85,9 @@ module.exports  = {
             .fetch( { require: true } )
             .then( user => user.toJSON() )
             .then( user => {
-                
+
                 const password = GridPassword(gridStr, user.password)
-                
+
                 if (password === pswdFromUI) {
                     if (user.userType === 'ADMIN') {
                         reply.redirect('/listUsers')
@@ -84,7 +101,40 @@ module.exports  = {
             .catch( err => console.log(`Error`, err) )
     },
     loginColor(request, reply) {
+        const email      = request.payload.email
+        const gridStr    = request.payload.pswdGridN
+        const pswdFromUI = request.payload.pswdProvided.toUpperCase()
+        const colorGrid  = request.payload.randomColorSeq.split(' ')
 
+        new UserEntity()
+            .query( { where: { email: email } } )
+            .fetch( { require: true } )
+            .then( user => user.toJSON() )
+            .then( user => {
+
+                const pswd = colorGrid.reduce((pswd, color) => pswd + user[color], '')
+
+                let deriveStr = ''
+                for (let j =  0 ; j < pswd.length; j += 2) {
+                    const firstChar =  parseInt(pswd[j])
+                    const secChar   =  parseInt(pswd[j+1])
+                    const index     =  ((firstChar-1)*4 )+ (secChar-1)
+                    deriveStr      +=  gridStr[index]
+                }
+
+                console.log(_.chunk(gridStr, 5))
+
+                reply({
+                    user: user,
+                    gridStr: gridStr,
+                    pswdFromUI: pswdFromUI,
+                    colorGrid: colorGrid,
+                    pswd: pswd,
+                    deriveStr: deriveStr,
+                })
+
+            })
+            .catch( err => console.log(`Error`, err) )
     },
     getDirs(request, reply) {
         const dir = request.payload.dir;

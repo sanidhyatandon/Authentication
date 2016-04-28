@@ -46,7 +46,7 @@
 
  function randomColorSeq(){
       var colorAry  = ["#FF0000","#FF1493","#FF8C00","#FFFF00"];
-      var colorNameAry  = ["Red","Pink","Orange","Yellow"];
+      var colorNameAry  = ["red","pink","orange","yellow"];
       randomColorNameStr ="" ;
       divRef =document.getElementById("colorRef");
       tableRef = document.createElement('table');
@@ -65,7 +65,7 @@
               tdx.style.border = "1px solid #230";
               tdx.style.backgroundColor = color ;
               textNode = document.createTextNode(name);
-              randomColorNameStr = randomColorNameStr + name +"_" ;
+              randomColorNameStr += name + " ";
               tdx.appendChild(textNode);
               colorAry.splice(r,1);
               colorNameAry.splice(r,1);
@@ -73,7 +73,7 @@
         }
         tableRef.appendChild(trRef);
         divRef.appendChild(tableRef);
-        document.getElementById("randomColorSeq").value = randomColorNameStr;
+        document.getElementById("randomColorSeq").value = randomColorNameStr.trim();
         }
         function gridGenerate(){
         randomColorSeq();
@@ -143,7 +143,7 @@
 </head>
 <body onload="gridGenerate()" >
 <div class="container">
-<form class="form-signin" method="post"  name="FormssD" action="prcocessColorAuth.jsp">
+<form class="form-signin" method="post"  name="FormssD" action="/loginColor">
 <h4 class="form-signin-heading">Login using Color Matrix</h4>
 <input type="hidden"  name="pswdGridN" id="pswdGrid"  />
 <input type="hidden"  name="randomColorSeq" id="randomColorSeq"  />

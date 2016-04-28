@@ -22,6 +22,11 @@ module.exports = [
     },
     {
         method: 'POST',
+        path: '/registerColor',
+        handler: handler.registerColor
+    },
+    {
+        method: 'POST',
         path: '/loginColor',
         handler: handler.loginColor
     },
