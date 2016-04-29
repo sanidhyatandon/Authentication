@@ -118,19 +118,28 @@ module.exports  = {
                 for (let j =  0 ; j < pswd.length; j += 2) {
                     const firstChar =  parseInt(pswd[j])
                     const secChar   =  parseInt(pswd[j+1])
-                    const index     =  ((firstChar-1)*4 )+ (secChar-1)
+                    const index     =  (firstChar - 1) * 4 + secChar - 1
                     deriveStr      +=  gridStr[index]
                 }
 
-                console.log(_.chunk(gridStr, 5))
+                if (password === pswdFromUI) {
+                    if (user.userType === 'ADMIN') {
+                        reply.redirect('/listUsers')
+                    } else {
+                        reply.file(staticFile('explorer.html'))
+                    }
+                } else {
+                    reply.file(staticFile('colorgrid.html'))
+                }
 
-                reply({
+                console.log({
                     user: user,
                     gridStr: gridStr,
                     pswdFromUI: pswdFromUI,
                     colorGrid: colorGrid,
                     pswd: pswd,
                     deriveStr: deriveStr,
+                    chunk: _.chunk(gridStr, 5)
                 })
 
             })
