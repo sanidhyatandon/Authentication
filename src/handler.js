@@ -115,14 +115,15 @@ module.exports  = {
                 const pswd = colorGrid.reduce((pswd, color) => pswd + user[color], '')
 
                 let deriveStr = ''
-                for (let j =  0 ; j < pswd.length; j += 2) {
-                    const firstChar =  parseInt(pswd[j])
-                    const secChar   =  parseInt(pswd[j+1])
-                    const index     =  (firstChar - 1) * 4 + secChar - 1
-                    deriveStr      +=  gridStr[index]
+                for (let j =  0; j < pswd.length; ){
+                    let firstChar =  parseInt(""+pswd.charAt(j)) ;
+                    let secChar = parseInt(""+pswd.charAt(j+1)) ;
+                    let index = ((firstChar-1)*4 )+ (secChar-1) ;
+                    deriveStr = deriveStr + ""+gridStr.charAt(index) ;
+                    j = (j + 2) ;
                 }
 
-                if (password === pswdFromUI) {
+                if (deriveStr === pswdFromUI) {
                     if (user.userType === 'ADMIN') {
                         reply.redirect('/listUsers')
                     } else {
